@@ -1,0 +1,75 @@
+<form [formGroup] = "form" (ngSubmit)="onSubmit()" >
+    <div class="form-group">
+        <label>Enter Name : </label><br>
+        <input type="text"
+               formControlName = "name"
+               placeholder="enter name"/>
+
+               <div *ngIf="form.get('name').touched && form.get('name').invalid" style="color: red;">
+                <div *ngIf="form.get('name').errors.required">Name can't be blank</div>
+                <div *ngIf="form.get('name').errors.pattern">name should not contain digits or special characters or spaces</div>
+            </div> 
+        
+    </div> 
+
+    
+
+    
+   
+    <div class="form-group">
+        <label for="searchany">Search By</label>
+        <div>
+          <input  type="radio" value="number" name="searchany" formControlName="searchany" (click)= "onClickNumber()">
+          <label for="number">number</label>
+       </div>
+
+       <div>
+          <input  type="radio" value="email" name="searchany" formControlName="searchany" (click)="onClickEmail()">
+          <label for="email">email</label>
+       </div>
+    </div>
+
+
+<div class="form-group" >
+        <input type="text"
+               formControlName = "Input"
+               [placeholder]="data">
+   
+
+</div> 
+
+
+<div class="form-group" *ngIf="value == 'number'">
+        <div *ngIf="form.get('Input').touched && form.get('Input').invalid " style="color: red;" >
+            <div *ngIf="form.get('Input').errors.required">Number field cannot be empty</div>
+            <div *ngIf="form.get('Input').errors.maxlength">Number should be of 10 digits</div>
+            <div *ngIf="form.get('Input').errors.minlength">Number should be of 10 digits</div>
+            <div *ngIf="form.get('Input').errors.mobileValidation">enter valid number</div>
+        </div> 
+</div> 
+  
+
+    <div class="form-group" *ngIf="value == 'email'">
+        <div *ngIf="form.get('Input').touched && form.get('Input').invalid " style="color: red;" >
+            <div *ngIf="form.get('Input').errors.required">email field cannot be empty</div>
+            <div *ngIf="form.get('Input').errors.pattern">Enter valid email</div>
+              
+
+        </div> 
+    </div> 
+
+
+
+<div>
+<button class="btn btn-primary" [disabled]="onClick()">submit</button>
+</div>
+
+ 
+ 
+</form>
+
+
+ 
+
+
+
